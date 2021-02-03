@@ -8,3 +8,7 @@
 std::string red(const std::string& input) {
   return "\033[1;31m" + input + "\033[0m";
 }
+
+std::string yellow(const std::string& input) {
+
+}

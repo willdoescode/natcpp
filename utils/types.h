@@ -38,39 +38,29 @@ private:
   std::string created;
   std::string size;
   std::string perms;
+
 public:
   File (
-    fs::directory_entry p,
-    std::vector<FileMetaType> m,
-    std::string g,
-    std::string u,
-    std::string md,
-    std::string c,
-    std::string s,
-    std::string ps
-    ) {
-    path = std::move(p);
-    meta_types = std::move(m);
-    group = std::move(g);
-    user = std::move(u);
-    modified = std::move(md);
-    created = std::move(c);
-    size = std::move(s);
-    perms = std::move(ps);
-  }
+    const fs::directory_entry&,
+    const std::vector<FileMetaType>&,
+    const std::string&,
+    const std::string&,
+    const std::string&,
+    const std::string&,
+    const std::string&,
+    const std::string&
+  );
+
   ~File() = default;
-  std::string doit() {
-    return this->path.path();
-  };
+
+  static std::string doit();
 };
 
 struct Directory {
 private:
   std::vector<File> paths;
 public:
-  explicit Directory(std::vector<File> p) {
-    paths = std::move(p);
-  }
+  explicit Directory(const std::vector<File>&);
   ~Directory() = default;
 };
 #endif //NATCPP_TYPES_H
