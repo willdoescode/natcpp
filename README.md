@@ -1,6 +1,6 @@
-# Nat CPP
+# Nat C++
 
-## Testing
+### Testing
 ```bash
 cd tests
 
