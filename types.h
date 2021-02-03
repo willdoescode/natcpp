@@ -67,5 +67,10 @@ public:
 struct Directory {
 private:
   std::vector<File> paths;
+public:
+  Directory(std::vector<File> p) {
+    paths = std::move(p);
+  }
+  ~Directory() = default;
 };
 #endif //NATCPP_TYPES_H
