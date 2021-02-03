@@ -3,6 +3,7 @@
 #include <string>
 #include <filesystem>
 #include "args/cli_args.h"
+#include "types.h"
 namespace fs = std::filesystem;
 
 auto get_files(const std::string& dir_name) {
@@ -15,7 +16,9 @@ auto get_files(const std::string& dir_name) {
 int main(int argc, char* argv[]) {
   auto args = parse_args();
   std::vector<fs::directory_entry> f = get_files(".");
-  for (const fs::directory_entry& i : f)
-    std::cout << i.path() << std::endl;
+
+  auto cool = new File(f[0], {Dir}, "1", "2", "3", "4", "5", "6");
+  std::cout << cool->doit() << std::endl;
+
   return 0;
 }
