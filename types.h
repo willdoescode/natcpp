@@ -12,7 +12,7 @@
 namespace fs = std::filesystem;
 
 enum FileMetaType {
-  Dir,
+  Directory,
   Symlink,
   Path,
   Pipe,
