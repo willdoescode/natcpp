@@ -68,7 +68,7 @@ struct Directory {
 private:
   std::vector<File> paths;
 public:
-  Directory(std::vector<File> p) {
+  explicit Directory(std::vector<File> p) {
     paths = std::move(p);
   }
   ~Directory() = default;
