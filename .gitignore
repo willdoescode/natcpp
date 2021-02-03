@@ -1,2 +1,5 @@
 /cmake-build-debug
 /.idea
+/tests/.idea
+/tests/cmake-build-debug
+/tests/a.out
