@@ -5,6 +5,7 @@
 #include "args/cli_args.h"
 #include "types.h"
 #include "utils/string_formatting/string_effects.h"
+#include "utils/string_formatting/string_coloring.h"
 namespace fs = std::filesystem;
 
 std::vector<fs::directory_entry> get_files(const std::string& dir_name) {
@@ -22,6 +23,7 @@ int main(int argc, char* argv[]) {
   std::cout << cool->doit() << std::endl;
 
   std::cout << bold("hello") << std::endl;
+  std::cout << red("world") << std::endl;
   std::cout << underline("world") << std::endl;
 
   return 0;
