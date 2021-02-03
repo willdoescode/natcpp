@@ -6,11 +6,11 @@
 #include <string>
 #include <vector>
 
-Directory::Directory(const std::vector<File>& paths) {
+Directory :: Directory(const std::vector<File>& paths) {
   this->paths = paths;
 }
 
-File::File (
+File :: File (
   const fs::directory_entry& path,
   const std::vector<FileMetaType>& meta_types,
   const std::string& group,
@@ -30,6 +30,6 @@ File::File (
   this->perms = perms;
 }
 
-std::string File::doit() {
+std::string File :: doit() {
   return "hello";
 }
