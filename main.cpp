@@ -4,6 +4,7 @@
 #include <filesystem>
 #include "args/cli_args.h"
 #include "types.h"
+#include "utils/string_formatting/string_effects.h"
 namespace fs = std::filesystem;
 
 std::vector<fs::directory_entry> get_files(const std::string& dir_name) {
@@ -19,6 +20,9 @@ int main(int argc, char* argv[]) {
 
   auto cool = new File(f[0], {Directory}, "1", "2", "3", "4", "5", "6");
   std::cout << cool->doit() << std::endl;
+
+  std::cout << bold("hello") << std::endl;
+  std::cout << underline("world") << std::endl;
 
   return 0;
 }
