@@ -10,7 +10,7 @@ std::string bold(const std::string&);
 std::string dimmed(const std::string&);
 std::string italic(const std::string&);
 std::string underline(const std::string&);
-std::string blank(const std::string&);
+std::string blink(const std::string&);
 std::string reverse(const std::string&);
 std::string hidden(const std::string&);
 std::string stricken(const std::string&);
