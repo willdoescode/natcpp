@@ -53,7 +53,7 @@ public:
 
   ~File() = default;
 
-  static std::string doit();
+  std::string doit();
 };
 
 struct Directory {

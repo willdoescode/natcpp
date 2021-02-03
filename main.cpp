@@ -21,7 +21,7 @@ int main(int argc, char* argv[]) {
   std::cout << cool->doit() << std::endl;
 
   std::cout << bold("hello") << std::endl;
-  std::cout << red("world") << std::endl;
+  std::cout << red(underline("world")) << std::endl;
   std::cout << underline("world") << std::endl;
 
   return 0;

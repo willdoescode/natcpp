@@ -31,5 +31,5 @@ File :: File (
 }
 
 std::string File :: doit() {
-  return "hello";
+  return this->user;
 }
