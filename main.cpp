@@ -7,7 +7,7 @@
 #include <iostream>
 #include <string>
 #include "args/cli_args.h"
-#include "types.h"
+#include "utils/types.h"
 #include "utils/string_formatting/string_effects.h"
 #include "utils/string_formatting/string_coloring.h"
 #include "utils/fs/handle_files.h"
