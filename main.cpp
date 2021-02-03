@@ -22,6 +22,12 @@ int main(int argc, char* argv[]) {
 
   std::cout << bold("hello") << std::endl;
   std::cout << red(underline("world")) << std::endl;
+  std::cout << yellow("yellow test") << std::endl;
+  std::cout << magenta("magenta test") << std::endl;
+  std::cout << light_blue("light blue test") << std::endl;
+  std::cout << dark_blue("dark blue test") << std::endl;
+  std::cout << grey("grey test") << std::endl;
+  std::cout << green("green test") << std::endl;
   std::cout << underline("world") << std::endl;
 
   return 0;
