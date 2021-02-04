@@ -36,10 +36,6 @@ File :: File (
   this->perms = perms;
 }
 
-std::string File :: doit() {
-  return this->perms;
-}
-
 std::string color_and_format_perms(fs::perms p) {
   std::string res;
   if ((p & fs::perms::owner_read) != fs::perms::none) {

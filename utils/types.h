@@ -53,7 +53,23 @@ public:
 
   ~File() = default;
 
-  std::string doit();
+  fs::directory_entry get_path();
+  std::vector<FileMetaType> get_meta_types();
+  std::string get_group();
+  std::string get_user();
+  std::string get_modified();
+  std::string get_created();
+  std::string get_size();
+  std::string get_perms();
+
+  void set_path(fs::directory_entry);
+  void set_meta_types(std::vector<FileMetaType>);
+  void set_group(std::string);
+  void set_user(std::string);
+  void set_modified(std::string);
+  void set_created(std::string);
+  void set_size(std::string);
+  void set_perms(std::string);
 };
 
 class Directory {
