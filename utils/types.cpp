@@ -115,14 +115,27 @@ Directory :: Directory (const std::string& path) {
     struct stat info{};
     stat(i.path().c_str(), &info);
     struct group *gr = getgrgid(info.st_gid);
-    struct tm *created = localtime((const time_t *) info.st_ctime);
+    auto created = posix2time(info.st_ctime);
     struct passwd *user = getpwuid(info.st_uid);
+
+    std::tm *gat = std::gmtime(&created);
+    std::stringstream buff;
+    buff << std::put_time(gat, "%A, %d %B %Y %H:%M");
+    std::string created_format = buff.str();
 
     std::time_t tt = decltype(i.last_write_time())::clock::to_time_t(i.last_write_time());
     std::tm *gmt = std::gmtime(&tt);
     std::stringstream buffer;
     buffer << std::put_time(gmt, "%A, %d %B %Y %H:%M");
     std::string modified_formatted = buffer.str();
+
+    std::string file_size;
+
+    if (i.is_directory()) {
+      file_size.append(std::to_string(i.file_size()));
+    } else {
+      file_size.append(grey("-"));
+    }
 
     paths_h.emplace_back(
       File (
@@ -131,8 +144,8 @@ Directory :: Directory (const std::string& path) {
         gr->gr_name,
         user->pw_name,
         modified_formatted,
-        std::to_string(created->tm_year),
-        std::to_string(i.file_size()),
+        created_format,
+        file_size,
         color_and_format_perms(fs::status(i.path()).permissions())
       )
     );
