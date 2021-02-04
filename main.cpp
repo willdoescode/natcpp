@@ -16,7 +16,14 @@ int main(int argc, char* argv[]) {
   auto f = get_files(".");
 
   auto dir = new Directory(".");
-  std::cout << dir->get_paths()[0].get_perms() << std::endl;
+  for (File file : dir->get_paths()) {
+    std::cout << file.get_perms() << ' ';
+    std::cout << file.get_size() << ' ';
+    std::cout << file.get_group() << ' ';
+    std::cout << file.get_user() << ' ';
+    std::cout << file.get_modified() << ' ';
+    std::cout << file.get_path().path() << std::endl;
+  }
 
   return 0;
 }
