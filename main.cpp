@@ -15,8 +15,8 @@ int main(int argc, char* argv[]) {
   auto args = parse_args();
   auto f = get_files(".");
 
-  auto cool = new File(f[0], {Directory}, "1", "2", "3", "4", "5", "6");
-  std::cout << cool->doit() << std::endl;
+  auto dir = new Directory(".");
+  std::cout << dir->get_paths()[0].doit() << std::endl;
 
   return 0;
 }

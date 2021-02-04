@@ -62,5 +62,7 @@ private:
 public:
   explicit Directory(const std::string&);
   ~Directory() = default;
+
+  std::vector<File> get_paths();
 };
 #endif //NATCPP_TYPES_H
