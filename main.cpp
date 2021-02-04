@@ -16,7 +16,7 @@ int main(int argc, char* argv[]) {
   auto f = get_files(".");
 
   auto dir = new Directory(".");
-  std::cout << dir->get_paths()[0].doit() << std::endl;
+  std::cout << dir->get_paths()[0].get_perms() << std::endl;
 
   return 0;
 }

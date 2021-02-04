@@ -53,7 +53,7 @@ void File :: set_group(std::string g) {
 }
 
 void File :: set_user(std::string u) {
-  this->user = u;
+  this->user = std::move(u);
 }
 
 void File :: set_modified(std::string m) {
