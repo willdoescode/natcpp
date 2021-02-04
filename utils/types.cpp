@@ -127,7 +127,7 @@ Directory :: Directory (const std::string& path) {
 
     std::string file_size;
 
-    if (i.is_directory()) {
+    if (!i.is_directory()) {
       file_size.append(std::to_string(i.file_size()));
     } else {
       file_size.append(grey("-"));
