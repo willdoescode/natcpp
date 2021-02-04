@@ -3,3 +3,5 @@
 /tests/.idea
 /tests/cmake-build-debug
 /tests/a.out
+/assets/.DS_Store
+.DS_Store

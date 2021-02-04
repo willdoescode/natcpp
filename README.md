@@ -1,5 +1,7 @@
 # Nat C++
 
+![demo](assets/demo.png)
+
 ### Testing
 ```bash
 cd tests
