@@ -12,7 +12,7 @@
 namespace fs = std::filesystem;
 
 enum FileMetaType {
-  Directory,
+  Dir,
   Symlink,
   Path,
   Pipe,
@@ -28,7 +28,7 @@ enum SortBy {
   None,
 };
 
-struct File {
+class File {
 private:
   fs::directory_entry path;
   std::vector<FileMetaType> meta_types;
@@ -49,18 +49,18 @@ public:
     const std::string&,
     const std::string&,
     const std::string&
-  );
+    );
 
   ~File() = default;
 
   std::string doit();
 };
 
-struct Directory {
+class Directory {
 private:
   std::vector<File> paths;
 public:
-  explicit Directory(const std::vector<File>&);
+  explicit Directory(const std::string&);
   ~Directory() = default;
 };
 #endif //NATCPP_TYPES_H
