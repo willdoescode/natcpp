@@ -14,6 +14,7 @@
 #include <pwd.h>
 #include <chrono>
 #include <sstream>
+#include <iostream>
 namespace fs = std::filesystem;
 
 File :: File (
@@ -151,4 +152,15 @@ Directory :: Directory (const std::string& path) {
 
 std::vector<File> Directory :: get_paths() {
   return this->paths;
+}
+
+void Directory :: show_ls() {
+  for (File file : this->get_paths()) {
+    std::cout << file.get_perms() << ' ';
+    std::cout << file.get_size() << ' ';
+    std::cout << file.get_group() << ' ';
+    std::cout << file.get_user() << ' ';
+    std::cout << file.get_modified() << ' ';
+    std::cout << file.get_path().path() << std::endl;
+  }
 }
