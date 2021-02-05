@@ -2,11 +2,17 @@
 // Created by Will Lane on 2/2/21.
 //
 
-#include "args/cli_args.h"
+#include "include/CLI11.hpp"
 #include "utils/types.h"
 
 int main(int argc, char* argv[]) {
-  (new Directory(parse_args(argc, argv)))->show_ls();
+  CLI::App app{"natls c++"};
+  std::string dir = ".";
+  app.add_option("Directory", dir, "Input a file");
+
+  CLI11_PARSE(app, argc, argv);
+
+  (new Directory(dir))->show_ls();
 
   return 0;
 }

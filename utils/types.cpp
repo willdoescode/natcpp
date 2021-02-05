@@ -5,6 +5,7 @@
 #include "types.h"
 #include "fs/handle_files.h"
 #include "string_formatting/string_coloring.h"
+#include "string_formatting/string_effects.h"
 #include <string>
 #include <utility>
 #include <vector>
@@ -120,18 +121,28 @@ Directory :: Directory (const std::string& path) {
     buff << std::put_time(gat, "%A, %d %B %Y %H:%M");
     std::string created_format = buff.str();
 
-    std::time_t tt = decltype(i.last_write_time())::clock::to_time_t(i.last_write_time());
-    std::tm *gmt = std::gmtime(&tt);
-    std::stringstream buffer;
-    buffer << std::put_time(gmt, "%A, %d %B %Y %H:%M");
-    std::string modified_formatted = buffer.str();
+    std::string modified_formatted;
+
+    try {
+      std::time_t tt = decltype(i.last_write_time())::clock::to_time_t(i.last_write_time());
+      std::tm *gmt = std::gmtime(&tt);
+      std::stringstream buffer;
+      buffer << std::put_time(gmt, "%A, %d %B %Y %H:%M");
+      modified_formatted = buffer.str();
+    } catch (fs::filesystem_error &e) {
+      modified_formatted = "0 0 0 00 0 ";
+    }
 
     std::string file_size;
 
     if (!i.is_directory()) {
-      file_size.append(std::to_string(i.file_size()));
+      try {
+        file_size = std::to_string(i.file_size());
+      } catch (fs::filesystem_error &e) {
+        file_size = grey("-");
+      }
     } else {
-      file_size.append(grey("-"));
+      file_size = grey("-");
     }
 
     paths_h.emplace_back(
@@ -156,11 +167,46 @@ std::vector<File> Directory :: get_paths() {
 
 void Directory :: show_ls() {
   for (File file : this->get_paths()) {
-    std::cout << file.get_perms() << ' ';
+    std::string path;
+    std::string perm_denote = ".";
+    auto p = file.get_path();
+    for (auto m : file.get_meta_types()) {
+      switch (m) {
+        case Dir:
+          path = light_blue(p.path().filename().string() + "/");
+          perm_denote = light_blue("d");
+          break;
+        case Symlink:
+          path = magenta(p.path().filename().string());
+          perm_denote = magenta("l");
+          break;
+        case Pipe:
+          path = yellow(p.path().filename().string());
+          perm_denote = yellow("|");
+          break;
+        case CharD:
+          path = green(p.path().filename().string());
+          perm_denote = green("c");
+          break;
+        case BlockD:
+          path = underline(green(p.path().filename().string()));
+          perm_denote = underline(green("b"));
+          break;
+        case Socket:
+          path = underline(yellow(p.path().filename().string()));
+          perm_denote = underline(yellow("s"));
+          break;
+        case Path:
+          path = p.path().filename().string();
+          break;
+      }
+    }
+
+    std::cout << perm_denote + file.get_perms() << ' ';
     std::cout << file.get_size() << ' ';
     std::cout << file.get_group() << ' ';
     std::cout << file.get_user() << ' ';
     std::cout << file.get_modified() << ' ';
-    std::cout << file.get_path().path() << std::endl;
+    std::cout << path << std::endl;
   }
 }
