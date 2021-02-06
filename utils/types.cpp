@@ -154,7 +154,11 @@ File get_file_info(const fs::directory_entry& file) {
   );
 }
 
-Directory :: Directory (const std::string& path) {
+bool sort_compare_file(File f1, File f2) {
+  return f1.get_path().path().filename().string() < f2.get_path().path().filename().string();
+}
+
+Directory :: Directory (const std::string& path, bool sort) {
   std::vector<File> paths_h = {};
 
   if (fs::directory_entry(path).exists() && !fs::directory_entry(path).is_directory()) {
@@ -167,6 +171,9 @@ Directory :: Directory (const std::string& path) {
       paths_h.emplace_back(get_file_info(i));
     }
   }
+
+  if (sort)
+    std::sort(paths_h.begin(), paths_h.end(), sort_compare_file);
 
   this->paths = paths_h;
 }
@@ -230,6 +237,7 @@ void Directory :: show_ls(bool gdf) {
   std::vector<File> paths_h = this->get_paths();
   std::vector<File> dirs;
   std::vector<File> others;
+
 
   if (gdf) {
     for (File file : paths_h) {

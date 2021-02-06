@@ -76,7 +76,7 @@ class Directory {
 private:
   std::vector<File> paths;
 public:
-  explicit Directory(const std::string&);
+  explicit Directory(const std::string&, bool);
   ~Directory() = default;
 
   std::vector<File> get_paths();
