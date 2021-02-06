@@ -159,6 +159,9 @@ Directory :: Directory (const std::string& path) {
 
   if (fs::directory_entry(path).exists() && !fs::directory_entry(path).is_directory()) {
     paths_h.emplace_back(get_file_info(fs::directory_entry(path)));
+  } else if(!fs::directory_entry(path).exists()) {
+    std::cout << red("OS Error (2): Path does not exist.") << std::endl;
+    std::exit(1);
   } else {
     for (const fs::directory_entry& i : get_files(path)) {
       paths_h.emplace_back(get_file_info(i));
