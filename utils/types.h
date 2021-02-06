@@ -80,6 +80,6 @@ public:
   ~Directory() = default;
 
   std::vector<File> get_paths();
-  void show_ls();
+  void show_ls(bool);
 };
 #endif //NATCPP_TYPES_H
