@@ -2,6 +2,10 @@
 
 ![demo](assets/demo.png)
 
+### Adding arg parse lib
+Download latest release from [here](https://github.com/CLIUtils/CLI11/releases)
+put .hpp file in include/CLI11.hpp
+
 ### Testing
 ```bash
 cd tests

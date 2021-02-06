@@ -5,3 +5,4 @@
 /tests/a.out
 /assets/.DS_Store
 .DS_Store
+/include/CLI11.hpp
