@@ -211,6 +211,12 @@ void print_files(const std::vector<File>& files) {
       }
     }
 
+    // Set colors
+    file.set_size(green(file.get_size()));
+    file.set_group(yellow(file.get_group()));
+    file.set_user(yellow(file.get_user()));
+    file.set_modified(light_blue(file.get_modified()));
+
     std::cout << perm_denote + file.get_perms() << ' ';
     std::cout << file.get_size() << ' ';
     std::cout << file.get_group() << ' ';
