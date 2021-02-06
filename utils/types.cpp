@@ -157,7 +157,7 @@ File get_file_info(const fs::directory_entry& file) {
 Directory :: Directory (const std::string& path) {
   std::vector<File> paths_h = {};
 
-  if (fs::directory_entry(path).exists()) {
+  if (fs::directory_entry(path).exists() && !fs::directory_entry(path).is_directory()) {
     paths_h.emplace_back(get_file_info(fs::directory_entry(path)));
   } else {
     for (const fs::directory_entry& i : get_files(path)) {
